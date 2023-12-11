@@ -1,3 +1,5 @@
+/******************************* INITIALISATION ********************************** */
+
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -17,24 +19,37 @@ const slides = [
 	}
 ]
 
+
 // Conserve l'index de l image affichée en cours (on commence par la 1ere)
 let indexImgAffichee = 0;
-let bannerImage = document.querySelector("#banner .banner-img");	
+let bannerImage = document.querySelector("#banner .banner-img");
+let bannerText = document.querySelector("#banner p");	
+let bannerDot = document.querySelectorAll(".dot");
+let flecheLeft = document.querySelector("#banner .arrow_left");//Récupérer un élément HTML et déclarer une variable fleche
+let flecheRight = document.querySelector("#banner .arrow_right");//Récupérer un élément HTML et déclarer une variable fleche
 
+/******************************* EVENTS ********************************** */
+flecheLeft.addEventListener( "click" , changeImageLeft);
+flecheRight.addEventListener( "click" , changeImageRight);
+
+
+/******************************* FUNCTIONS ********************************** */
 
 function changeImageLeft() {
 	// Si nous sommes à la 1ere image 	
 	if (indexImgAffichee <= 0 ){
 		// alors on affiche la derniere
 		indexImgAffichee = slides.length - 1;
+	    
 	} else {
 		// sinon on affiche l image precedente
 		indexImgAffichee = indexImgAffichee -1;
+
 	}
-	bannerImage.src = "./assets/images/slideshow/" + slides[indexImgAffichee].image;	
+	displayImgAndSelectDot();
 }
 
-function changeImageRight() {
+function changeImageRight() {	
 		// Si nous sommes a la dernière image
 	if (indexImgAffichee >= slides.length -1 ){
 		// Alors on affiche le 1er element
@@ -43,12 +58,16 @@ function changeImageRight() {
 		// Sinon on affiche l image suivante
 		indexImgAffichee = indexImgAffichee + 1;
 	}
-	bannerImage.src = "./assets/images/slideshow/" + slides[indexImgAffichee].image;	
+	displayImgAndSelectDot();
 }
 
-let flecheLeft = document.querySelector("#banner .arrow_left");//Récupérer un élément HTML et déclarer une variable fleche
-flecheLeft.addEventListener( "click" , changeImageLeft);
+function displayImgAndSelectDot(){
+	bannerImage.src = "./assets/images/slideshow/" + slides[indexImgAffichee].image;
+	bannerText.innerHtml = slides[indexImgAffichee].tagLine;
+	document.querySelector(".dot_selected").classList.remove("dot_selected");
+	// Display one selected current img
+	bannerDot[indexImgAffichee].classList.add("dot_selected");
+}
 
-let flecheRight = document.querySelector("#banner .arrow_right");//Récupérer un élément HTML et déclarer une variable fleche
-flecheRight.addEventListener( "click" , changeImageRight);
+
 

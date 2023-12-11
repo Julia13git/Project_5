@@ -19,10 +19,10 @@ const slides = [
 
 // Conserve l'index de l image affichée en cours (on commence par la 1ere)
 let indexImgAffichee = 0;
+let bannerImage = document.querySelector("#banner .banner-img");	
 
 
 function changeImageLeft() {
-	let bannerImage = document.querySelector("#banner .banner-img");	
 	// Si nous sommes à la 1ere image 	
 	if (indexImgAffichee <= 0 ){
 		// alors on affiche la derniere
@@ -35,7 +35,6 @@ function changeImageLeft() {
 }
 
 function changeImageRight() {
-	let bannerImage = document.querySelector("#banner .banner-img");
 		// Si nous sommes a la dernière image
 	if (indexImgAffichee >= slides.length -1 ){
 		// Alors on affiche le 1er element

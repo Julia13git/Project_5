@@ -63,7 +63,7 @@ function changeImageRight() {
 
 function displayImgAndSelectDot(){
 	bannerImage.src = "./assets/images/slideshow/" + slides[indexImgAffichee].image;
-	bannerText.innerHtml = slides[indexImgAffichee].tagLine;
+	bannerText.innerHTML = slides[indexImgAffichee].tagLine;
 	document.querySelector(".dot_selected").classList.remove("dot_selected");
 	// Display one selected current img
 	bannerDot[indexImgAffichee].classList.add("dot_selected");
